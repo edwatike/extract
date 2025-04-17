@@ -1,6 +1,0 @@
-playwright
-beautifulsoup4
-python-dotenv
-aiohttp
-asyncio
-loguru 
