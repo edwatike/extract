@@ -24,12 +24,19 @@ wheels/
 venv/
 ENV/
 env/
+.env
 
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
+
+# Project specific
+data/
+logs/
+*.log
+.DS_Store
 
 # Project specific
 data/

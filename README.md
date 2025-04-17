@@ -1,46 +1,99 @@
-# Deep Site Analyzer
+# Enhanced Site Analyzer
 
-Модуль для глубокого анализа веб-сайтов с обходом защиты от ботов.
+Мощный инструмент для анализа структуры веб-сайтов, извлечения категорий, продуктов и ссылок с использованием Playwright.
 
 ## Возможности
 
-- Асинхронная загрузка сайтов через Playwright
+- Анализ структуры сайта
+- Извлечение категорий и продуктов
 - Обход защиты от ботов
-- Извлечение HTML, чистого текста, заголовков и ссылок
-- Сохранение результатов в различных форматах
+- Сохранение результатов в JSON формате
 - Поддержка прокси
+- Подробное логирование
+- Параллельный анализ нескольких сайтов
 
 ## Установка
 
-1. Установите зависимости:
+1. Клонируйте репозиторий:
+```bash
+git clone https://github.com/yourusername/enhanced-site-analyzer.git
+cd enhanced-site-analyzer
+```
+
+2. Создайте виртуальное окружение и активируйте его:
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# или
+venv\Scripts\activate  # Windows
+```
+
+3. Установите зависимости:
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Установите браузеры для Playwright:
+4. Установите браузеры для Playwright:
 ```bash
-playwright install chromium
+playwright install
 ```
 
 ## Использование
 
-1. Создайте файл `sites.txt` со списком URL для анализа (по одному на строку)
-
-2. Опционально: настройте прокси через переменную окружения:
+### Базовый анализ сайта:
 ```bash
-export PROXY="http://user:pass@host:port"
+python enhanced_analyzer_cli.py https://example.com
 ```
 
-3. Запустите анализ:
+### Анализ с подробным выводом:
 ```bash
-python site_analyzer.py
+python enhanced_analyzer_cli.py https://example.com -v
 ```
 
-## Результаты
+### Анализ нескольких сайтов:
+```bash
+python enhanced_analyzer_cli.py https://site1.com https://site2.com -v
+```
 
-Для каждого сайта создаются файлы:
-- `{domain}.html` - полный HTML
-- `{domain}.txt` - очищенный текст
-- `{domain}.json` - метаданные (URL, заголовок, ссылки)
+### Сохранение результатов в определенную директорию:
+```bash
+python enhanced_analyzer_cli.py https://example.com -o results -v
+```
 
-Ошибки записываются в `errors.log` 
+## Структура проекта
+
+- `enhanced_site_analyzer.py` - основной класс анализатора
+- `enhanced_analyzer_cli.py` - CLI интерфейс
+- `requirements.txt` - зависимости проекта
+- `data/` - директория для сохранения результатов (создается автоматически)
+
+## Результаты анализа
+
+Результаты сохраняются в JSON файлы в формате:
+```json
+{
+    "url": "https://example.com",
+    "title": "Site Title",
+    "structure": {
+        "navigation": [...],
+        "mainContent": {...},
+        "sidebar": {...},
+        "footer": {...}
+    },
+    "categories": [
+        {"name": "Category 1", "url": "https://example.com/cat1"},
+        ...
+    ],
+    "products": [
+        {"name": "Product 1", "url": "https://example.com/prod1", "price": "100.00"},
+        ...
+    ],
+    "links": [...],
+    "request_log": [...],
+    "timestamp": "2024-04-18T01:13:15.894"
+}
+```
+
+## Лицензия
+
+MIT License 
