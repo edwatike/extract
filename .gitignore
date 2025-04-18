@@ -24,7 +24,6 @@ wheels/
 venv/
 ENV/
 env/
-.env
 
 # IDE
 .idea/
@@ -34,11 +33,11 @@ env/
 
 # Project specific
 data/
-logs/
 *.log
-.DS_Store
+*.json
+!package.json
+!package-lock.json
 
-# Project specific
-data/
-.env
-*.log 
+# OS specific
+.DS_Store
+Thumbs.db 

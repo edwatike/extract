@@ -1,31 +1,37 @@
-# Enhanced Site Analyzer
+# Site Analyzer
 
-Мощный инструмент для анализа структуры веб-сайтов, извлечения категорий, продуктов и ссылок с использованием Playwright.
+Инструмент для анализа веб-сайтов и извлечения информации о компаниях.
 
 ## Возможности
 
 - Анализ структуры сайта
 - Извлечение категорий и продуктов
-- Обход защиты от ботов
+- Поиск ИНН компаний
+- Параллельная обработка нескольких сайтов
+- Подробное логирование процесса
 - Сохранение результатов в JSON формате
-- Поддержка прокси
-- Подробное логирование
-- Параллельный анализ нескольких сайтов
+
+## Требования
+
+- Python 3.8+
+- Playwright
+- aiohttp
+- backoff
 
 ## Установка
 
 1. Клонируйте репозиторий:
 ```bash
-git clone https://github.com/yourusername/enhanced-site-analyzer.git
-cd enhanced-site-analyzer
+git clone https://github.com/yourusername/site-analyzer.git
+cd site-analyzer
 ```
 
 2. Создайте виртуальное окружение и активируйте его:
 ```bash
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
+source venv/bin/activate  # для Linux/Mac
 # или
-venv\Scripts\activate  # Windows
+venv\Scripts\activate  # для Windows
 ```
 
 3. Установите зависимости:
@@ -40,60 +46,39 @@ playwright install
 
 ## Использование
 
-### Базовый анализ сайта:
+### Анализ одного сайта
+
 ```bash
-python enhanced_analyzer_cli.py https://example.com
+python site_analyzer_cli.py https://example.com -v
 ```
 
-### Анализ с подробным выводом:
+### Анализ нескольких сайтов
+
 ```bash
-python enhanced_analyzer_cli.py https://example.com -v
+python analyze_multiple_sites.py https://example1.com https://example2.com -v
 ```
 
-### Анализ нескольких сайтов:
-```bash
-python enhanced_analyzer_cli.py https://site1.com https://site2.com -v
-```
+### Извлечение ИНН
 
-### Сохранение результатов в определенную директорию:
 ```bash
-python enhanced_analyzer_cli.py https://example.com -o results -v
+python extract_inn.py
 ```
 
 ## Структура проекта
 
-- `enhanced_site_analyzer.py` - основной класс анализатора
-- `enhanced_analyzer_cli.py` - CLI интерфейс
-- `requirements.txt` - зависимости проекта
-- `data/` - директория для сохранения результатов (создается автоматически)
-
-## Результаты анализа
-
-Результаты сохраняются в JSON файлы в формате:
-```json
-{
-    "url": "https://example.com",
-    "title": "Site Title",
-    "structure": {
-        "navigation": [...],
-        "mainContent": {...},
-        "sidebar": {...},
-        "footer": {...}
-    },
-    "categories": [
-        {"name": "Category 1", "url": "https://example.com/cat1"},
-        ...
-    ],
-    "products": [
-        {"name": "Product 1", "url": "https://example.com/prod1", "price": "100.00"},
-        ...
-    ],
-    "links": [...],
-    "request_log": [...],
-    "timestamp": "2024-04-18T01:13:15.894"
-}
+```
+site-analyzer/
+├── README.md
+├── requirements.txt
+├── site_analyzer.py
+├── site_analyzer_cli.py
+├── enhanced_site_analyzer.py
+├── analyze_multiple_sites.py
+├── extract_inn.py
+└── data/
+    └── results/
 ```
 
 ## Лицензия
 
-MIT License 
+MIT 
